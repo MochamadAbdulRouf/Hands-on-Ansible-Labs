@@ -90,6 +90,7 @@ pod-[username]-managed2
 4. Show all hosts from inventory.
 ```bash
 student@pod-[username]-controller:~$ ansible all --list-hosts
+```
 
 5. Show ungrouped hosts from inventory.
 ```bash
