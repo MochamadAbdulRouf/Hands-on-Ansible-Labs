@@ -1,0 +1,46 @@
+- name: Install and Ensure the Apache2 service started # Nama/Deskripsi untuk play 1
+  hosts: webserver              # Target semua server di group 'webserver'
+  become: true                  # Menjalankan semua tugas sebagai root (sudo)
+  vars:                         # Blok untuk mendefinisikan variable
+    web_pkg: apache2            # Variable untuk nama paket webserver
+    web_service: apache2        # Variable untuk nama layanan webserver
+    python_pkg: python3-urllib3 # Variable untuk paket dependecies Python
+
+# TASK YANG AKAN DI JALANKAN
+  tasks:            
+    - name: Required packages are installed and up to date # Deskripsi Task 1
+      apt:                  # Gunakan modul 'apt' untuk paket Debian/Ubuntu
+        update_cache: yes   # Jalankan 'apt update' Sebelum instalasi
+        force_apt_get: yes  # Paksa penggunaan 'apt-get' jika perlu
+        name:               # Daftar paket yang akan di install
+         - "{{web_pkg}}"    # Ambil nilai dari variabel 'web_pkg'
+         - "{{python_pkg}}" # Ambil nilai dari variabel 'python_pkg'
+        state: latest       # Pastikan versi terbaru yang terinstall
+
+    - name: The {{web_service}} service is started and enabled # Deskripsi task 2 memakai variabel
+      service:                    # Gunakan modul 'service' untuk mengelola layanan
+        name: "{{web_service}}"   # Nama layanan yang di atur, dari variabel
+        enabled: true             # pastikan layanan aktif saat server boot
+        state: started            # pastikan layanan sedang dalam kondisi berjalan
+
+    - name: Web content is in place # Deskripsi untuk task 3
+      copy:                                                   # Gunakan modul 'copy'
+        content: "Hello World! ansible is fun and crazy."     # Buat file dengan isi teks ini (tanpa file sumber)
+        dest: /var/www/html/index.html                        # Lokasi file tujuan di server target
+
+# --PLAY #2 Verifikasi webserver-- 
+
+- name: Verify the web server is accessible # Nama/Deskripsi untuk play 2
+  hosts: localhost                          # Penting Play ini berjakan di mesin master/controler sendiri
+  tasks:
+    - name: Testing web server
+      uri:                                  # Gunakan modul 'uri' untuk mengakses URL (spt url)
+        url: http://pod-ansible             # Alamat web yang akan di uji
+        status_code: 200                    # Tugas hanya SUKSES jika respon HTTP adalah 200 OK
+        return_content: yes                 # Perintahkan modul untuk menyimpan isi halaman web
+      register: Result                      # Simpan semua output tugas ini ke variabel 'Result'
+
+
+    - name: print output web server # Deskripsi Task 2
+      debug:                        # Gunakan modul 'debug' untuk mencetak info ke layar
+        var: Result.content         # Cetak nilai dari kunci 'content' didalam variabel 'result'

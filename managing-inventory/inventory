@@ -1,0 +1,18 @@
+# (1) Host di luar grup
+master-ansible 
+
+# (2) Grup Dasar Pertama
+[Blitar]
+pod-ansible
+
+# (3) Grup Dasar Kedua
+[Development]
+pod-ansible
+
+# (4) Grup Dasar Ketiga
+[Webservers]
+pod-ansible
+
+# (5) Grup Induk (Grup dari Grup)
+[Indonesia:children]
+Blitar

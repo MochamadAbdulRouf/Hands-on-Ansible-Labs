@@ -1,0 +1,18 @@
+- name: install and start apache2 # Nama play: Deskripsi umum dari keseluruhan task
+  hosts: web                      # Target play ini akan dijalankan di semua server dalam grup 'web'.
+  become: true                    # Eskalasi Hak akses: menjalankan tugas sebagai root via sudo
+  tasks:                          # Daftar tugas: awal dari serangkaian perintah yang akan di eksekusi
+    # TASK PERTAMA   
+    - name: apache2 package os present # Nama task 2
+      apt: name=apache2 state=present  # Modul apt : memastikan paket apache2 terinstal.
+    # TASK KEDUA
+    - name: correct index.html is present # Nama task: deskripsi tugas ini
+      copy:                               # Modul copy menyalin file dari master ke target
+        src: ./files/index.html           # Sumber lokasi file di mesin ansible controller/master
+        dest: /var/www/html/index.html    # Tujuan lokasi file di server target
+    # TASK KETIGA
+    - name: Apache 2 is started  # Nama task 3
+      service:                   # Modul service mengelola layanan di server target
+          name: apache2          # Nama service menentukan service yang akan di atur
+          state: started         # status memastikan service running
+          enabled: true          # Enable on Boot: Memastikan service aktif otomatis saat server reboot.
