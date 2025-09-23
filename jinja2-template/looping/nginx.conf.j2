@@ -1,0 +1,5 @@
+upstream my_app_servers {
+{% for server in web_servers %}
+    server {{ server.ip }}:{{ server.port }};
+{% endfor %}
+}

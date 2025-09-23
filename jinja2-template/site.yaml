@@ -1,0 +1,19 @@
+- name: install and start apache2
+  hosts: webservers
+  become: true
+
+  tasks:
+    # Menginstal Apache2
+    - name: ensure apache2 package is present
+      apt:
+        name: apache2
+        state: present
+        update_cache: yes   # Menjalankan apt update sebelum menginstal
+        force_apt_get: yes  # Memastikan pengunaan apt-get untuk operasi ini
+    # Merestart Layanan Apache2
+    - name : restart apache2 service
+      service: name=apache2 state=restarted enabled=yes
+
+    # Menyalin file konten dari template jinja
+    - name: copy index.html
+      template: src=template.html.j2 dest=/var/www/html/template.html

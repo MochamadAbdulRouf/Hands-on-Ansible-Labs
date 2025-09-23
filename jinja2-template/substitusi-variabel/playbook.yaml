@@ -1,0 +1,8 @@
+- name: Configure Apache from template
+  template:                       # Modul ini memberitahu ansible untuk memproses file src sebagai template jinja
+    src: httpd.conf.j2            # Source template jinja
+    dest: /etc/apache2/httpd.conf # Tujuan template mengarah ke settingan apache
+  vars:                                 # Blok ini mendefinisikan variabel
+    port_number: 8080                   # Mendefiniskan port_number dengan nilai 8080
+    server_name: server-dev.example.com # Mendefinisikan variabel server_name dengan nilai tersebut
+    
