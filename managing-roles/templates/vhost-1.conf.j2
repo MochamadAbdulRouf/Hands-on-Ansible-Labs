@@ -1,0 +1,13 @@
+<VirtualHost *:80>
+    ServerAdmin webmaster@vhost-1.{{ ansible_user }}
+    ServerName vhost-1.{{ ansible_user }}
+    ErrorLog /var/log/apache2/vhost.{{ ansible_user }}-1-error.log
+    CustomLog /var/log/apache2/vhost.{{ ansible_user }}-1-common.log common
+    DocumentRoot /var/www/vhosts/{{ ansible_user }}-1/
+
+    <Directory /var/www/vhosts/{{ ansible_user }}-1/>
+        Options +Indexes +FollowSymlinks +Includes
+        Order allow,deny
+        Allow from all
+    </Directory>
+</VirtualHost>

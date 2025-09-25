@@ -1,0 +1,39 @@
+- name: Ensure apache2 is installed
+  apt: 
+    name: apache2
+    state: latest
+- name: Ensure apache2 is started and enabled
+  service:
+    name: apache2
+    state: started 
+    enabled: true
+- name: vhost-1 file is installed
+  template:
+    src: vhost-1.conf.j2
+    dest: /etc/apache2/sites-available/vhost-1.conf
+    owner: rouf
+    group: rouf
+    mode: 0644
+- name: enable vhost-1
+  command: a2ensite vhost-1.conf
+  notify:
+    - restart apache2
+- name: vhost-2 is installed
+  template:
+    src: vhost-2.conf.j2
+    dest: /etc/apache2/sites-available/vhost-2.conf
+    owner: rouf
+    group: rouf
+    mode: 0644
+- name: enable vhost-2
+  command: a2ensite vhost-2.conf
+  notify:
+    - restart apache2
+- name: HTML content is installed
+  copy:
+    src: html-1/
+    dest: "/var/www/vhost/{{ ansible_user }}-1"
+- name: HTML content is installed
+  copy:
+    src: html-2/
+    dest: "/var/www/vhost/{{ ansible_user }}-2"
