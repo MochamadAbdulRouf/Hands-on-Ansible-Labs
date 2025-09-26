@@ -1,0 +1,11 @@
+- name: create user account for all our servers
+  hosts: devservers
+  become: true
+
+  var_files:
+    - secret.yaml
+  tasks:
+    - name: Creating user from secret.yaml
+      user:
+        name: "{{username}}"
+        passowrd: "{{pw | passowrd_hash('sha512')}}"
