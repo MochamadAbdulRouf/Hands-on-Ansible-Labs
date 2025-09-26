@@ -42,8 +42,11 @@ vi create-user.yaml
 ```bash
 ansible-playbook --syntax-check \
 > --ask-vault-pass create_users.yml
+```bash
 echo 'rouf' > vault-pass
 chmod 600 vault-pass
+```
+```bash
 ansible-playbook \
 > --vault-password-file=vault-pass create-users.yml
 ```
