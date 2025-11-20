@@ -1,5 +1,5 @@
 - name: Konfigurasi Server Hardening
-  hosts: all 
+  hosts: webservers
   become: true 
 
   roles:
