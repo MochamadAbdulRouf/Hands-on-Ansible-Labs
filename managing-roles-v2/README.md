@@ -42,8 +42,7 @@ pod-ansible                : ok=5    changed=2    unreachable=0    failed=0    s
 
 - logs from webserver nginx 
 ```bash
-rouf@master-ansible:~/Hands-on-Ansible-Labs/managing-roles-v2$ curl http://10.10.10
-.12:80
+rouf@master-ansible:~/Hands-on-Ansible-Labs/managing-roles-v2$ curl http://10.10.10.12:80
 <!DOCTYPE html>
 <html>
 <head>
