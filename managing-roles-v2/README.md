@@ -1,7 +1,23 @@
 # Managing Roles Ansible
 In this labs i learned how to manage roles, template, tasks, handlers.for specific /configurations and deep learn about it.
 
-# How do i run this labs?
+## Structure folder for ansible roles
+Ansible works based on the principle of “Convention over Configuration.”, A role only.
+A role can actually have many standard folders (not just tasks), and Ansible checks them automatically:
+
+- tasks/: Contains the main list of tasks to be executed. (Required if you want to run commands).
+
+- handlers/: Contains handlers (e.g., restart service).
+
+- defaults/: Default variables (low priority).
+
+- vars/: Role variables (high priority).
+
+- files/: Static files to be copied to the server.
+
+- templates/: Template files (Jinja2) to be dynamically edited.
+
+## How do i run this labs?
 
 1. Create a specific configuration file like this .
 2. Manage misconfigurations.
