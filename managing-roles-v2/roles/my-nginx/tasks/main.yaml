@@ -1,0 +1,17 @@
+- name: install nginx
+  apt:
+    name: nginx
+    state: present
+    update_cache: yes
+
+- name: start nginx service 
+  service:
+    name: nginx 
+    state: started
+    enabled: yes
+
+- name: Deploy index HTML page
+  template:
+    src: index.html.j2              # Mengambil folder template
+    dest: /var/www/html/index.html
+  notify: restart nginx             # Memanggil handler jika file berubah 
