@@ -40,4 +40,33 @@ PLAY RECAP *********************************************************************
 pod-ansible                : ok=5    changed=2    unreachable=0    failed=0    skipped=0    rescued=0    ignored=0
 ```
 
+- logs from webserver nginx 
+```bash
+rouf@master-ansible:~/Hands-on-Ansible-Labs/managing-roles-v2$ curl http://10.10.10
+.12:80
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Learning Ansible Roles</title>
+</head>
+<body>
+    <h1>Succesfulyy learning Ansible Roles</h1>
+    <p>This server managed using Ansible Roles v3</p>
+    <p>Congratulations!!</p>
+</body>
+</html>
+rouf@master-ansible:~/Hands-on-Ansible-Labs/managing-roles-v2$ curl http://10.10.10.12
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Learning Ansible Roles</title>
+</head>
+<body>
+    <h1>Succesfulyy learning Ansible Roles</h1>
+    <p>This server managed using Ansible Roles v3</p>
+    <p>Congratulations!!</p>
+</body>
+</html
+```
+
 - note: If you do not detect any failures in the log, it means you have successfully implemented the Ansible role.
