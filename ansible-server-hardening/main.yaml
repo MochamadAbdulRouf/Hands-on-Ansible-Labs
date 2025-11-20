@@ -1,0 +1,8 @@
+- name: Konfigurasi Server Hardening
+  hosts: all 
+  become: true 
+
+  roles:
+    - common
+    - docker 
+    - security
