@@ -1,9 +1,0 @@
-- name: Konfigurasi Server Infrastructure
-  hosts: webservers
-  become: true # Jalankan sebagai sudo/root
-
-  roles: 
-  - common
-  - docker
-  - security
-  
