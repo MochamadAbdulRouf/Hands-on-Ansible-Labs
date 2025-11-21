@@ -45,13 +45,12 @@
 - name: Install Docker Engine
   apt: 
     name: 
-      - docker-cli
-      - docker-compose 
-      - containerd.io
       - docker-ce 
-      - docker-ce-cli 
-      - docker-buildx-plugin  
+      - docker-ce-cli
+      - containerd.io
+      - docker-buildx-plugin 
       - docker-compose-plugin
+      
     state: present
     update_cache: yes
 
