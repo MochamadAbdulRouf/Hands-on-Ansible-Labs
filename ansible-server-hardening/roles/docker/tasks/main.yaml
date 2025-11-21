@@ -7,18 +7,36 @@
       - gnupg
     state: present
 
+- name: Add Permission for Keyrings 
+  file: 
+    path: /etc/apt/keyrings
+    state: directory
+    mode: 0755
+    owner: root
+    group: root
+
 - name: Add Docker GPG key
   apt_key: 
-    url: https://download.docker.com/linux/ubuntu/gpg
+    url: https://download.docker.com/linux/ubuntu/gpg -o /etc/apt/keyrings/docker.asc
     state: present
+
+- name: Add permission Docker Engine 
+  file:
+    path: /etc/apt/keyrings/docker.asc
+    mode: 0644
+    state: file
+    
 
 - name: Install Docker Engine
   apt: 
     name: 
       - docker-cli
-      - docker-ce-cli
       - docker-compose 
       - containerd.io
+      - docker-ce 
+      - docker-ce-cli 
+      - docker-buildx-plugin  
+      - docker-compose-plugin
     state: present
     update_cache: yes
 
