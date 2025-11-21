@@ -67,6 +67,6 @@
     append: yes
 
 - name: Activate docker group
-  command:
+  shell:
     cmd: newgrp docker
     
