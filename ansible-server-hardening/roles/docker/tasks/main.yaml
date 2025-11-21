@@ -68,7 +68,5 @@
 
 - name: Activate docker group
   command:
-    cmd: newgrp docker 
-  # changed when : false karena command ini hanya aktivasi group
-  changed_when: false 
+    cmd: newgrp docker
     
