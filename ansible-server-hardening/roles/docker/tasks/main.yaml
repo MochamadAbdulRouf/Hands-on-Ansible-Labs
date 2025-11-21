@@ -62,7 +62,7 @@
 
 - name: add current user to docker group
   user:
-    name: "{{ root }}"
+    name: "rouf"
     groups: docker
     append: yes
     
