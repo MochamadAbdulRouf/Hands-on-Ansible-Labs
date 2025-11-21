@@ -15,10 +15,10 @@
     owner: root
     group: root
 
-- name: Add Docker GPG key
-  apt_key: 
-    url: https://download.docker.com/linux/ubuntu/gpg -o /etc/apt/keyrings/docker.asc
-    state: present
+#  - name: Add Docker GPG key
+ # apt_key: 
+  # url: https://download.docker.com/linux/ubuntu/gpg -o /etc/apt/keyrings/docker.asc
+  # state: present
 
 - name: Download Docker GPG key 
   get_url:
