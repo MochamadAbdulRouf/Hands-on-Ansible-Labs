@@ -50,7 +50,7 @@
       - containerd.io
       - docker-buildx-plugin 
       - docker-compose-plugin
-      
+
     state: present
     update_cache: yes
 
@@ -62,7 +62,7 @@
 
 - name: add current user to docker group
   user:
-    name: "{{ user_1 }}"
+    name: "{{ rouf }}"
     groups: docker
     append: yes
     
