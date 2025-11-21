@@ -1,0 +1,7 @@
+# Handler 
+- name: Restart SSH Service 
+  service: 
+    name: ssh
+    state: restarted 
+  # Trick supaya task ini hanya di panggil notify
+  listen: Restart SSH
