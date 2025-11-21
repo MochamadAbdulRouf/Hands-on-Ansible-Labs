@@ -1,4 +1,4 @@
-- name: Install tools untuk docker
+- name: Install tools for docker
   apt: 
     name: 
       - apt-transport-https
@@ -11,7 +11,7 @@
   file: 
     path: /etc/apt/keyrings
     state: directory
-    mode: 0755
+    mode: '0755'
     owner: root
     group: root
 
@@ -20,10 +20,20 @@
     url: https://download.docker.com/linux/ubuntu/gpg -o /etc/apt/keyrings/docker.asc
     state: present
 
+- name: Download Docker GPG key 
+  get_url:
+    url: https://download.docker.com/linux/ubuntu/gpg
+    dest: /etc/apt/keyrings/docker.asc
+    mode: '0644'
+    owner: root
+    group: root 
+    force: yes
+
+
 - name: Add permission Docker Engine 
   file:
     path: /etc/apt/keyrings/docker.asc
-    mode: 0644
+    mode: '0644'
     state: file
     
 
