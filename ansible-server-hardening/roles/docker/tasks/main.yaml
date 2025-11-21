@@ -60,15 +60,5 @@
     state: started 
     enabled: yes
 
-- name: add current user to docker group
-  user:
-    name: "rouf"
-    groups: docker
-    append: yes
-  become: true 
-    
-- name: Reset SSH connection to load new group permission
-  meta: reset_connection 
-
-- name: Activate docker group
-  command: newgrp docker 
+#  After Ansible has finished running, execute this command.  
+#  command : newgrp docker 
